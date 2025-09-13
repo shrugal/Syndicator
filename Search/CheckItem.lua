@@ -855,7 +855,7 @@ if Syndicator.Constants.IsEra then
   }
   CraftedCheck = function(details)
     local _, _, _, _, _, classID = C_Item.GetItemInfoInstant(details.itemID)
-    return craftedClasses[classID] and CraftInfoAnywhere ~= nil and CraftInfoAnywhere.Data.ItemsToRecipes[details.itemID] ~= nil
+    return craftedClasses[classID] ~= nil and CraftInfoAnywhere ~= nil and CraftInfoAnywhere.Data.ItemsToRecipes[details.itemID] ~= nil
   end
 else
   CraftedCheck = function(details)
