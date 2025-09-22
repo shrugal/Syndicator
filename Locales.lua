@@ -146,6 +146,7 @@ L["KEYWORD_ACTIVE_SEASON"] = "active season"
 L["KEYWORD_MISCELLANEOUS_ARMOR"] = "miscellaneous armor"
 L["KEYWORD_MISCELLANEOUS_WEAPON"] = "miscellaneous weapon"
 L["KEYWORD_ARMOR_STAT"] = "armor stat"
+L["KEYWORD_CURRENT_EXPANSION"] = "current expansion"
 
 L["GROUP_ARMOR_TYPE"] = "Armor Type"
 L["GROUP_BATTLE_PET"] = "Battle Pet Type"
