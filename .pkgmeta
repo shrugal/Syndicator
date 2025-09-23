@@ -7,6 +7,5 @@ plain-copy:
   - Core
   - Tracking
   - Search
-enable-toc-creation: yes
 externals:
   Libs/LibBattlePetTooltipLine: https://github.com/plusmouse/LibBattlePetTooltipLine/LibBattlePetTooltipLine
