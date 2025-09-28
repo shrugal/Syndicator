@@ -1673,6 +1673,7 @@ local EXCLUSIVE_KEYWORDS_NO_TOOLTIP_TEXT = {
 }
 
 local UPGRADE_PATH_PATTERN = ITEM_UPGRADE_TOOLTIP_FORMAT_STRING and "^" .. ITEM_UPGRADE_TOOLTIP_FORMAT_STRING:gsub("%%s", ".*"):gsub("%%d", ".*")
+local REQUIRES_PATTERN = ITEM_REQ_SKILL:gsub("%s", "(.*)")
 
 local function GetTooltipSpecialTerms(details)
   if details.searchKeywords then
@@ -1697,9 +1698,9 @@ local function GetTooltipSpecialTerms(details)
         -- tooltip search
         table.insert(details.searchKeywords, (term:lower():gsub("\226\128\147", "-"):gsub("\194\160", " ")))
       else
-        local match = line.leftText:match("^" .. ITEM_SPELL_TRIGGER_ONUSE) or line.leftText:match("^" .. ITEM_SPELL_TRIGGER_ONEQUIP) or (UPGRADE_PATH_PATTERN and line.leftText:match(UPGRADE_PATH_PATTERN))
+        local match = line.leftText:match("^" .. ITEM_SPELL_TRIGGER_ONUSE .. ".*") or line.leftText:match("^" .. ITEM_SPELL_TRIGGER_ONEQUIP .. ".*") or (UPGRADE_PATH_PATTERN and line.leftText:match(UPGRADE_PATH_PATTERN)) or line.leftText:match(REQUIRES_PATTERN)
         if details.classID ~= Enum.ItemClass.Recipe and match then
-          table.insert(details.searchKeywords, (line.leftText:lower():gsub("\226\128\147", "-"):gsub("\194\160", " ")))
+          table.insert(details.searchKeywords, (match:lower():gsub("\226\128\147", "-"):gsub("\194\160", " ")))
         end
       end
     end
