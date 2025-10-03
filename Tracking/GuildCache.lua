@@ -76,11 +76,12 @@ function SyndicatorGuildCacheMixin:GetGuildKey()
   local oldGuild = self.currentGuild
 
   self.currentGuild = nil
+  realm = realm or GetNormalizedRealmName()
 
-  local guildKey = guildName .. "-" .. (realm or GetNormalizedRealmName())
+  local guildKey = guildName .. "-" .. realm
 
   -- No guild found cached, create it
-  InitGuild(guildKey, guildName, gmRealm)
+  InitGuild(guildKey, guildName, realm)
   seenGuilds[guildName] = guildKey
 
   self.currentGuild = guildKey
