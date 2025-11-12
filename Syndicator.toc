@@ -32,7 +32,6 @@ Core\Initialize.lua
 
 Options\Initialize.lua
 
-Tracking\Utilities.lua
 Tracking\BagCache.lua
 Tracking\MailCache.lua
 Tracking\EquippedCache.lua
