@@ -525,7 +525,20 @@ end
 addonTable.Search.GetTooltipInfoLink = GetTooltipInfoLink
 addonTable.Search.GetTooltipInfoSpell = GetTooltipInfoSpell
 
-local JUNK_PATTERN = "^" .. SELL_PRICE
+local function VendorCheck(details)
+  GetTooltipInfoSpell(details)
+
+  if details.tooltipInfoSpell then
+    for _, row in ipairs(details.tooltipInfoSpell.lines) do
+      if row.type and row.type == Enum.TooltipDataLineType.SellPrice or not row.type and row.leftText:match(SELL_PATTERN) then
+        return true
+      end
+    end
+    return false
+  end
+end
+
+local SELL_PATTERN = "^" .. SELL_PRICE
 local function JunkCheck(details)
   if details.isJunk ~= nil then
     return details.isJunk
@@ -535,16 +548,7 @@ local function JunkCheck(details)
     return false
   end
 
-  GetTooltipInfoSpell(details)
-
-  if details.tooltipInfoSpell then
-    for _, row in ipairs(details.tooltipInfoSpell.lines) do
-      if row.leftText:match(JUNK_PATTERN) then
-        return false
-      end
-    end
-    return true
-  end
+  return VendorCheck(details)
 end
 
 local function UpgradeCheck(details)
@@ -1078,6 +1082,7 @@ AddKeywordLocalised("KEYWORD_READ", ReadCheck, addonTable.Locales.GROUP_ITEM_DET
 AddKeywordLocalised("KEYWORD_TRADEABLE_LOOT", IsTradeableLoot, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_TRADABLE_LOOT", IsTradeableLoot, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_RELIC", RelicCheck, addonTable.Locales.GROUP_ARMOR_TYPE)
+AddKeywordLocalised("KEYWORD_VENDOR", VendorCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_STACKS", StackableCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_SOCKETED", SocketedCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_CURRENCY", CurrencyCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
