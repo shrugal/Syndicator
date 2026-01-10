@@ -525,6 +525,7 @@ end
 addonTable.Search.GetTooltipInfoLink = GetTooltipInfoLink
 addonTable.Search.GetTooltipInfoSpell = GetTooltipInfoSpell
 
+local SELL_PATTERN = "^" .. SELL_PRICE
 local function VendorCheck(details)
   GetTooltipInfoSpell(details)
 
@@ -538,7 +539,6 @@ local function VendorCheck(details)
   end
 end
 
-local SELL_PATTERN = "^" .. SELL_PRICE
 local function JunkCheck(details)
   if details.isJunk ~= nil then
     return details.isJunk
