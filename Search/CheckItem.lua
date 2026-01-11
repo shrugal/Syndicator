@@ -548,7 +548,7 @@ local function JunkCheck(details)
     return false
   end
 
-  return VendorCheck(details)
+  return addonTable.Constants.IsClassic or VendorCheck(details)
 end
 
 local function UpgradeCheck(details)
@@ -1082,7 +1082,6 @@ AddKeywordLocalised("KEYWORD_READ", ReadCheck, addonTable.Locales.GROUP_ITEM_DET
 AddKeywordLocalised("KEYWORD_TRADEABLE_LOOT", IsTradeableLoot, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_TRADABLE_LOOT", IsTradeableLoot, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_RELIC", RelicCheck, addonTable.Locales.GROUP_ARMOR_TYPE)
-AddKeywordLocalised("KEYWORD_VENDOR", VendorCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_STACKS", StackableCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_SOCKETED", SocketedCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
 AddKeywordLocalised("KEYWORD_CURRENCY", CurrencyCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
@@ -1118,6 +1117,7 @@ if addonTable.Constants.IsRetail then
     AddKeywordManual(ITEM_ACCOUNTBOUND_UNTIL_EQUIP:lower(), "warbound until equipped", WarboundUntilEquippedCheck, addonTable.Locales.GROUP_BINDING_TYPE)
     AddKeywordLocalised("KEYWORD_WUE", WarboundUntilEquippedCheck, addonTable.Locales.GROUP_BINDING_TYPE)
   end
+  AddKeywordLocalised("KEYWORD_VENDOR", VendorCheck, addonTable.Locales.GROUP_ITEM_DETAIL)
 end
 
 local sockets = {
