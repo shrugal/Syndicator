@@ -29,6 +29,7 @@ local GUILD_OPEN_EVENTS = {
   "GUILDBANKBAGSLOTS_CHANGED",
   "GUILDBANK_UPDATE_TABS",
   "GUILDBANK_UPDATE_MONEY",
+  "GUILDBANK_UPDATE_WITHDRAWMONEY",
 }
 
 local ROSTER_EVENTS = {
@@ -120,7 +121,7 @@ function SyndicatorGuildCacheMixin:OnEvent(eventName, ...)
   elseif eventName == "GUILDBANK_UPDATE_TABS" then
     self.isUpdatePending = true
     self:ExamineGeneralTabInfo()
-  elseif eventName == "GUILDBANK_UPDATE_MONEY" then
+  elseif eventName == "GUILDBANK_UPDATE_MONEY" or eventName == "GUILDBANK_UPDATE_WITHDRAWMONEY" then
     self:GetGuildKey()
     local data = SYNDICATOR_DATA.Guilds[self.currentGuild]
     if data then
